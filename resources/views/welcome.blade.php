@@ -109,9 +109,11 @@
                     @else
                
                     <a class="button btn btn-primary" href="{{ route('login') }}">Login</a>
+                 
                     @if (Route::has('register'))
                          <a class="button btn btn-primary" href="{{ route('register') }}">Register</a>
                     @endif
+                 
                @endif
 
                 </div>

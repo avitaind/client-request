@@ -124,12 +124,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                @auth
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
+                                      <!---
                                         <div class="image">
-                                            <img src="images/icon/avatar-01.jpg" alt="{{ Auth::user()->name }}" />
+                                            <img src="/images/icon/{{ Auth::user()->name }}.png"  alt="{{ Auth::user()->name }}" />
                                         </div>
+                                      ---->
                                         <div class="content">
                                             <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>
                                         </div>
@@ -137,7 +139,7 @@
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="{{ Auth::user()->name }}" />
+                                                        <img src="/images/icon/{{ Auth::user()->name }}.png" alt="{{ Auth::user()->name }}" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
@@ -169,6 +171,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endauth
                             </div>
                         </div>
                     </div>

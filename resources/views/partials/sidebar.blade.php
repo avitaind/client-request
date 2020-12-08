@@ -1,4 +1,3 @@
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -9,98 +8,143 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
+                    <!---
+                        Dashboard
+                    --->
+                
+                      @auth
+                        @if (Auth::user()->is_admin=='1')
+                        <li class="active">
+                            <a href="{{ url('admin/dashboard') }}"> <i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                         </li>
+                         @else
+                         <li class="active">
+                            <a href="{{ url('/dashboard') }}"> <i class="fa fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                         @endif
+               
+                     @endauth
+
+
+                    <!---
+                        Tickets
+                    --->
+
+                        <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fa fa-ticket"></i>Tickets</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="index.html">Dashboard 1</a>
-                                </li>
-                                <li>
-                                    <a href="index2.html">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="index3.html">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="index4.html">Dashboard 4</a>
-                                </li>
-                            </ul>
+                            <li>
+                                 <a href="{{ url('ticket/create') }}">
+                                  <i class="fa fa-plus"></i>Create New</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-check-circle"></i>Completed</a>
+                             </li>
+
+                             <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-spinner"></i>Processing</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-gear"></i>Pending</a>
+                             </li>
+                         
+                             <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-stop-circle"></i>Closed</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-ban"></i>Rejected</a>
+                             </li>
+                            <li>
+                                 <a href="chart.html">
+                                  <i class="fa fa-globe"></i>View All</a>
+                             </li>
+                           </ul>
                         </li>
-                        <li>
-                            <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                
+                   <!---
+                        Projects
+                    --->
+                    <li class="has-sub">
+                            <a class="js-arrow" href="#">
+                                <i class="fa fa-tasks"></i>Projects</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                         
+                             <li>
+                                 <a href="chart.html">Social Media</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Retail Artwork</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Website/NEXSTMALL</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">SEO</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Print Ads/Outdoor</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Social Media</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Content</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Reporting</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">EDM</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">3rd Party eCommerce</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Application Support</a>
+                             </li>
+                             <li>
+                                 <a href="chart.html">Misc Work</a>
+                             </li>
+
+                           </ul>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
+                
+
+                   
+
+                  <!---
+                        Resources / Employees
+                   --->
+
+                   @auth
+                      @if (Auth::user()->is_admin=='1')
                         <li>
                             <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
+                                <i class="fa fa-users"></i>Resources</a>
                         </li>
+                        @else
+                        <li>
+                            <a href="form.html">
+                                <i class="fa fa-users"></i>Employees</a>
+                        </li>
+                        @endif
+               
+                     @endauth
                         <li>
                             <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                                <i class="fa fa-calendar-alt"></i>Calendar</a>
                         </li>
                         <li>
                             <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
+                                <i class="fa fa-support"></i>Support</a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="button.html">Button</a>
-                                </li>
-                                <li>
-                                    <a href="badge.html">Badges</a>
-                                </li>
-                                <li>
-                                    <a href="tab.html">Tabs</a>
-                                </li>
-                                <li>
-                                    <a href="card.html">Cards</a>
-                                </li>
-                                <li>
-                                    <a href="alert.html">Alerts</a>
-                                </li>
-                                <li>
-                                    <a href="progress-bar.html">Progress Bars</a>
-                                </li>
-                                <li>
-                                    <a href="modal.html">Modals</a>
-                                </li>
-                                <li>
-                                    <a href="switch.html">Switchs</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grids</a>
-                                </li>
-                                <li>
-                                    <a href="fontawesome.html">Fontawesome Icon</a>
-                                </li>
-                                <li>
-                                    <a href="typo.html">Typography</a>
-                                </li>
-                            </ul>
-                        </li>
+                        
                     </ul>
                 </nav>
             </div>

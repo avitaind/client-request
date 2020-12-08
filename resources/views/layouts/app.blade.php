@@ -43,10 +43,10 @@
 
         @include('partials.header.mobile')
 
-        @include('partials.sidebar')
+      
            <!-- PAGE CONTAINER-->
            <div class="page-container">
-
+           @include('partials.sidebar')
              @include('partials.header.desktop')
 
 
