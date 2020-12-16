@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Create New Ticket</div>
-                <div class="card-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('ticket.store') }}"  enctype="multipart/form-data" >
+<div class="float-container">
+    @include('includes.flash')
+
+  <div class="float-child">
+    <div class="left">
+
+      <form class="form-horizontal" role="form" method="POST" action="{{ route('ticket.store') }}"  enctype="multipart/form-data" >
                     {!! csrf_field() !!}
 
                     <div class="form-group{{ $errors->has('brand') ? ' has-error' : '' }}">
@@ -99,8 +100,13 @@
                         @endif
                     </div>
                     </div>
-
-                    <div class="form-group{{ $errors->has('priority') ? ' has-error' : '' }}">
+             </div>
+  </div>
+  
+  <div class="float-child">
+    <div class="right">
+    
+    <div class="form-group{{ $errors->has('priority') ? ' has-error' : '' }}">
                     <label for="priority" class="col-md-10 control-label">Priority</label>
                     <div class="col-md-10">
                         <select id="priority" type="" class="form-control" name="priority">
@@ -136,14 +142,14 @@
                     <label for="reference" class="col-md-10 control-label">Reference File Upload</label>
                     <div class="col-md-10">
                         <input id="reference" type="file" class="form-control" name="reference[]" multiple="" value="{{ old('reference') }}">
-                        <p class="files">Supported file format: doc, docx, jpg, jpeg, png, pdf, xlsx, xlx, ppt, pptx, csv, zip<br/>Multiple files should have the same extension or in a zip file.</p>    
+                        <p class="small">*Supported file format: doc, docx, jpg, jpeg, png, pdf, xlsx, xlx, ppt, pptx, csv, zip<br/>*Multiple files should have the same extension or in a zip file.</p>    
                         @if ($errors->has('reference'))
                             <span class="help-block">
                             <strong><span class="error">{{ $errors->first('reference') }}</span></strong>
                             </span>
                         @endif
                         
-                    </div>
+                      </div>
                     </div>
 
                     <div class="form-group{{ $errors->has('otherinfo') ? ' has-error' : '' }}">
@@ -167,9 +173,10 @@
                     </div>
                     </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                    
+                    </div>
+  </div>
+  
+</div>
 </div>
 @endsection

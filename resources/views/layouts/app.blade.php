@@ -22,6 +22,7 @@
 
     <!-- Bootstrap CSS-->
     <link href="{{ asset('css/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" media="all">
 
     <!-- css CSS-->
     <link href="{{ asset('css/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
