@@ -6,6 +6,7 @@ use DB;
 use App\Models\User;
 use Storage;
 use App\Models\Ticket;
+use App\Models\Rejection;
 use App\Models\Category;
 use App\Models\Status;
 use Faker\Provider\Image;
@@ -49,7 +50,7 @@ class TicketController extends Controller
             $imageName = time().'-'.$file->getClientOriginalName();
             $imageNameArr[] = $imageName;
             // Upload file to public path in images directory
-            $fileName = $file->move(base_path('\public\uploads'), $file->getClientOriginalName());           
+            $fileName = $file->move(base_path('\public\references'), $file->getClientOriginalName());           
 
             // Database operation
             $array[] = $fileName; 
@@ -87,4 +88,148 @@ class TicketController extends Controller
        return redirect()->back()->with("status", "A new SRN: $ticket->job$num has been generated.");
 
     }
+
+
+    public function showTicket()
+    {
+        $tickets = Ticket::latest()->orderBy('no', 'desc')->get();
+        return view('ticket.show', compact('tickets'));
+    }
+
+    public function showTicketDetail($slug){
+
+        $statuses = DB::table('statuses')
+        ->select("*")
+        ->get();
+
+        $ticket_detail = Ticket::where('no', $slug)->get()->first();
+        return view('ticket.details', compact('ticket_detail', 'statuses'));
+
+      
+    }
+
+    public function showProcessing(){
+
+
+        $tickets = Ticket::where('status', 'processing')->orderBy('no', 'desc')->get();
+        return view('ticket.status.processing', compact('tickets'));
+
+      
+    }
+
+    public function showProcessingDetail($slug){
+
+        $statuses = DB::table('statuses')
+        ->select("*")
+        ->get();
+
+        $ticket_detail = Ticket::where('no', $slug)->get()->first();
+        return view('ticket.status.processing-detail', compact('ticket_detail', 'statuses'));
+
+      
+    }
+
+    public function showPending(){
+
+        $tickets = Ticket::where('status', 'pending from client')->orderBy('no', 'desc')->get();
+        return view('ticket.status.pending', compact('tickets'));
+
+      
+    }
+
+    public function showPendingDetail($slug){
+
+        $statuses = DB::table('statuses')
+        ->select("*")
+        ->get();
+
+        $ticket_detail = Ticket::where('no', $slug)->get()->first();
+        return view('ticket.status.pending-detail', compact('ticket_detail', 'statuses'));
+
+      
+    }
+
+    public function showClosed(){
+
+        $tickets = Ticket::where('status', 'closed')->orderBy('no', 'desc')->get();
+        return view('ticket.status.closed', compact('tickets'));
+      
+      
+    }
+
+    public function showClosedDetail($slug){
+
+        $statuses = DB::table('statuses')
+        ->select("*")
+        ->get();
+
+        $ticket_detail = Ticket::where('no', $slug)->get()->first();
+        return view('ticket.status.closed-detail', compact('ticket_detail', 'statuses'));
+
+      
+    }
+
+    public function showRejected(){
+
+        $tickets = Ticket::where('status', 'rejected')->orderBy('no', 'desc')->get();
+        return view('ticket.status.rejected', compact('tickets'));
+
+    }
+
+    public function showRejectedDetail($slug){
+
+        $statuses = DB::table('statuses')
+        ->select("*")
+        ->get();
+
+        $ticket_detail = Ticket::where('no', $slug)->get()->first();
+        return view('ticket.status.rejected-detail', compact('ticket_detail', 'statuses'));
+
+      
+    }
+
+    public function updateTicketDetail(Request $request, $id, AppMailer $mailer)
+    {
+       
+        $deadline = $request->input('deadline');
+        $status = $request->input('status');
+      
+        DB::update('update tickets set deadline = ?, status = ? where no = ?', [$deadline, $status, $id]);
+        $num = sprintf('%03d', intval($id));
+
+   
+        return redirect()->back()->with("status", "Your SRN: ADNESEA$num has been updated.");
+
+
+    }
+
+    public function rejection(Request $request, AppMailer $mailer, $id)
+    {
+        $this->validate($request, [
+            'reason' => 'required',
+                      
+        ]);
+
+        $rejection = new Rejection([
+            'jobno'     => $id,
+            'reason' => $request->input('reason'),
+            'comments'  => $request->input('comments'),
+
+        ]);
+
+      $rejection->save();
+      $status= $request->input('reject');
+
+      DB::update('update tickets set status = ? where no = ?', [$status, $id]);
+        
+      $mailer->sendRejectionInformation(Auth::user(), $rejection);
+      return redirect()->back()->with("status", "SRN: ADNESEA$id has been rejected.");
+  
+    }
+    
+
+
+
+
+
 }

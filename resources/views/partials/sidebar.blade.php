@@ -38,30 +38,25 @@
                                  <a href="{{ url('ticket/create') }}">
                                   <i class="fa fa-plus"></i>Create New</a>
                              </li>
-                             <li>
-                                 <a href="chart.html">
-                                  <i class="fa fa-check-circle"></i>Completed</a>
-                             </li>
-
-                             <li>
-                                 <a href="chart.html">
+                              <li>
+                                 <a href="{{ url('ticket/processing') }}">
                                   <i class="fa fa-spinner"></i>Processing</a>
                              </li>
                              <li>
-                                 <a href="chart.html">
+                                 <a href="{{ url('ticket/pending') }}">
                                   <i class="fa fa-gear"></i>Pending</a>
                              </li>
                          
                              <li>
-                                 <a href="chart.html">
+                                 <a href="{{ url('ticket/closed') }}">
                                   <i class="fa fa-stop-circle"></i>Closed</a>
                              </li>
                              <li>
-                                 <a href="chart.html">
+                                 <a href="{{ url('ticket/rejected') }}">
                                   <i class="fa fa-ban"></i>Rejected</a>
                              </li>
                             <li>
-                                 <a href="chart.html">
+                                 <a href="{{ url('ticket/view-all') }}">
                                   <i class="fa fa-globe"></i>View All</a>
                              </li>
                            </ul>
