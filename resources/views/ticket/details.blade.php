@@ -145,9 +145,20 @@
                   </tr>
 
                   @endif
- 
+                 
                  </table>
-
+                 
+                 <h4>Add comment</h4>
+                    <form class="form-horizontal" role="form" action="{{ route('comment.add') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="comment_body" class="form-control" />
+                            <input type="hidden" name="post_id" value="{!! $ticket_detail->no !!}" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-warning" value="Add Comment"/>
+                        </div>
+                    </form>
           </div>
           
       </div>
