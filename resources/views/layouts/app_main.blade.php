@@ -25,7 +25,7 @@
 </head>
     <body class="bg-gradient-primary">
 
-       @include('partials.navbar_bkp')
+       @include('partials.navbar_main')
 
         <main class="py-4">
             @yield('content')

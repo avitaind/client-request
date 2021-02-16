@@ -29,38 +29,12 @@
                     <!---
                         Tickets
                     --->
-
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fa fa-ticket"></i>Tickets</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                                 <a href="{{ url('ticket/create') }}">
-                                  <i class="fa fa-plus"></i>Create New</a>
-                             </li>
-                              <li>
-                                 <a href="{{ url('ticket/processing') }}">
-                                  <i class="fa fa-spinner"></i>Processing</a>
-                             </li>
-                             <li>
-                                 <a href="{{ url('ticket/pending') }}">
-                                  <i class="fa fa-gear"></i>Pending</a>
-                             </li>
-                         
-                             <li>
-                                 <a href="{{ url('ticket/closed') }}">
-                                  <i class="fa fa-stop-circle"></i>Closed</a>
-                             </li>
-                             <li>
-                                 <a href="{{ url('ticket/rejected') }}">
-                                  <i class="fa fa-ban"></i>Rejected</a>
-                             </li>
-                            <li>
-                                 <a href="{{ url('ticket/view-all') }}">
-                                  <i class="fa fa-globe"></i>View All</a>
-                             </li>
-                           </ul>
+                        <li class="active">
+                            <a href="{{ url('ticket/tickets') }}">
+                            <i class="fa fa-ticket"></i>Tickets</a>
                         </li>
+
+                      
                 
                    <!---
                         Projects

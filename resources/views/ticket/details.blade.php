@@ -73,17 +73,18 @@
                             <td>{!! $ticket_detail->otherinfo !!}</td>
                          </tr>
                        
-         @if(Auth::user()->is_admin)
+        
+        @if(Auth::user()->is_admin)
 
                    <!--- form  --->
             @include('includes.flash')
-            <form class="form-horizontal" role="form" action="/update-ticket/{{  $ticket_detail->no }}" method="POST" enctype="multipart/form-data">
+
+            <form class="form-horizontal" role="form" action="/update-ticket/{{ $ticket_detail->no }}" method="POST" enctype="multipart/form-data">
                    {!! csrf_field() !!}
                        <tr>
                             <th scope="col">Deadline:</th>
                             <td>
-                            <div class="form-group{{ $errors->has('deadline') ? ' has-error' : '' }}">
-
+                           <div class="form-group{{ $errors->has('deadline') ? ' has-error' : '' }}">
                             <input id="deadline" type="date" class="form-control" name="deadline" value="{{ old('deadline') }}">
                                 @if ($errors->has('deadline'))
                                     <span class="help-block">
@@ -91,6 +92,7 @@
                                     </span>
                                 @endif
                             </div>
+                           
                           </td>
                         </tr>
                         
@@ -99,7 +101,7 @@
                             <td>
                             <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
                             <select id="status" onchange="onDropdownSelect();" type="status" class="form-control" name="status">
-                            <option value="">Select Status</option>
+                            <option value="{{ $ticket_detail->status }}">{!! $ticket_detail->status !!} </option>
                                  @foreach($statuses as $status)
                                    <option value="{{ $status->name }}">{{ $status->name }}</option>
                                    @endforeach
@@ -112,6 +114,7 @@
                                 <div id="rejected" class="status" style="display:none"> .... </div>
 
                                </div>
+                              
                             </td>
                          </tr>
                         <tr>
@@ -125,8 +128,7 @@
                         </td>
                     </tr>
 
-
-                    </form>
+            </form>
 
          @else
         
@@ -138,27 +140,14 @@
                  <td>{!! $ticket_detail->deadline !!}</td>
                  </tr>
 
-                 
                   <tr>
                     <th scope="col">Status:</th>
                     <td>{!! $ticket_detail->status !!}</td>
                   </tr>
-
-                  @endif
+      @endif
                  
                  </table>
                  
-                 <h4>Add comment</h4>
-                    <form class="form-horizontal" role="form" action="{{ route('comment.add') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <input type="text" name="comment_body" class="form-control" />
-                            <input type="hidden" name="post_id" value="{!! $ticket_detail->no !!}" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-warning" value="Add Comment"/>
-                        </div>
-                    </form>
           </div>
           
       </div>
