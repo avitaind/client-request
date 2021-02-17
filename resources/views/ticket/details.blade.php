@@ -60,7 +60,7 @@
                         @if ($ticket_detail->reference!="")
                         <td>
                           @foreach(explode(',', $ticket_detail->reference) as $ref) 
-                          <a href="{{ '/'.$ref}}" target="_blank" download="{!! $ref !!}">Download File</a><br/>
+                          <a href="{{ '/'.$ref}}" target="_blank" download="{!! '/'.$ref !!}">Download File</a><br/>
                           @endforeach
                           </td>
                           @else

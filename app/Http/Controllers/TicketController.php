@@ -50,7 +50,8 @@ class TicketController extends Controller
             $imageName = time().'-'.$file->getClientOriginalName();
             $imageNameArr[] = $imageName;
             // Upload file to public path in images directory
-            $fileName = $file->move(base_path('\public\references'), $file->getClientOriginalName());           
+            //$fileName = $file->move(base_path('\public\references'), $file->getClientOriginalName());           
+            $fileName = $file->move(date('mdYHis').'uploads', $imageName);
 
             // Database operation
             $array[] = $fileName; 
@@ -148,9 +149,5 @@ class TicketController extends Controller
   
     }
     
-
-
-
-
 
 }
